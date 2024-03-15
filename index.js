@@ -18,7 +18,7 @@ app.post('/submit', (req, res) => {
   const imageBuffer = Buffer.from(image, 'base64');
   
   // Define path to save the image file
-  const imagePath = path.join(__dirname, filename);
+  const imagePath = path.join(__dirname, `uploads/${filename}`);
   
   // Write the image buffer to the file system
   fs.writeFile(imagePath, imageBuffer, 'binary', (err) => {
