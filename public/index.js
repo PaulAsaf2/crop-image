@@ -61,18 +61,31 @@ selectBtn.addEventListener('click', () => {
       // cropCont.innerHTML = ''
       // cropCont.append(imgEl)
       // cropCont.classList.add('flex')
+      
+      // -------------------------
 
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        const base64Image = event.target.result;
-        fetch('http://localhost:3000/submit', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({image: base64Image, filename: 'cropped-image.png'})
-        })
-      }
+      fetch('http://localhost:3000/submit', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({text: 'Text from frontend.'})
+      })
 
-      reader.readAsDataURL(result);
+      // -------------------------
+
+      // const reader = new FileReader();
+      // reader.onload = function(event) {
+      //   const base64Image = event.target.result;
+      //   fetch('http://localhost:3000/submit', {
+      //     method: 'POST',
+      //     headers: {'Content-Type': 'application/json'},
+      //     body: JSON.stringify({image: base64Image, filename: 'cropped-image.png'})
+      //   })
+      // }
+
+      // reader.readAsDataURL(result);
+
+      // -------------------------
+
       // console.log(result);
 
       // const formData = new FormData();
