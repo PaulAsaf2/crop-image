@@ -6,6 +6,9 @@ const cors = require('cors');
 const multer = require('multer');
 const app = express();
 const PORT = 3000;
+
+app.use(cors());
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const dest = `/root/crop-image/uploads`
@@ -19,7 +22,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({storage: storage});
 
-app.use(cors());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'))
