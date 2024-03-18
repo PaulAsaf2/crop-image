@@ -25,6 +25,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'))
 
+app.get('/', (req, res) => {
+  res.send(req.query);
+})
+
 app.post('/submit', upload.single('image'), (req, res) => {
   res.status(200).send({message: 'Upload succeed!'})
 })
