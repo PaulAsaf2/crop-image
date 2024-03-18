@@ -66,7 +66,7 @@ selectBtn.addEventListener('click', () => {
       formData.append('image', blob, 'filename')
       formData.append('name', 'Paul');
 
-      fetch('http://localhost:3000/submit', {
+      fetch('http://95.163.230.150:3000/submit', {
         method: 'POST',
         body: formData,
       })
