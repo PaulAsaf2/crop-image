@@ -70,10 +70,14 @@ selectBtn.addEventListener('click', () => {
       // const path = 'http://localhost:3000'
       // const path = 'https://webapp.monitour.ru/wallstring/crop-image'
 
-      fetch(`${path}/submit`, {
+      fetch(`http://95.163.230.150:3000/submit`, {
         method: 'POST',
-        body: formData,
+        body: JSON.stringify({message: 'Hello, Back!'}),
       })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
+    
     })
     .catch(error => console.log(error))
 })
