@@ -76,7 +76,7 @@ selectBtn.addEventListener('click', () => {
         method: 'POST',
         body: JSON.stringify({message: 'Hello, Back!'}),
       })
-        .then(res => JSON.parse(res))
+        .then(res => res.json())
         .then(data => console.log(data))
         .catch(err => console.log(err));
     
