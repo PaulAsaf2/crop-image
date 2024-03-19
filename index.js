@@ -6,9 +6,9 @@ const app = express();
 const PORT = 3000;
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    // const localDest = `C:\\Users\\pavel\\repositories\\Telegram Mini App\\crop-image\\backend\\uploads`
+    const dest = `C:\\Users\\pavel\\repositories\\Telegram Mini App\\crop-image\\backend\\uploads`
     // const dest = '/var/www/domains/webapp.monitour.ru/wallstring/crop-image/uploads'
-    const dest = '/root/crop-image/uploads'
+    // const dest = '/root/crop-image/uploads'
     cb(null, dest) // заменить на соответствующий адрес
   },
   filename: function (req, file, cb) {
