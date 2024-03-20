@@ -66,9 +66,8 @@ selectBtn.addEventListener('click', () => {
       formData.append('image', blob, 'filename')
       formData.append('name', 'Paul');
 
-      // const path = 'http://95.163.230.150:3000'
-      const path = 'http://localhost:3000'
-      // const path = 'https://webapp.monitour.ru/wallstring/crop-image'
+      const path = 'http://95.163.230.150:3000'
+      // const path = 'http://localhost:3000'
 
       fetch(`${path}/submit`, {
         method: 'POST',
