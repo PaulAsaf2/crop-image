@@ -9,7 +9,7 @@ const PORT = 3000;
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     // const dest = `C:\\Users\\pavel\\repositories\\Telegram Mini App\\crop-image\\backend\\uploads`
-    const dest = '/root/wallstring/webapp1/uploads';
+    const dest = '/var/www/wallstring/webapp1/uploads';
     // const dest = '/root/crop-image/uploads';
     cb(null, dest);
   },
