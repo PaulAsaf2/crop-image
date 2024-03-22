@@ -66,8 +66,8 @@ selectBtn.addEventListener('click', () => {
       formData.append('image', blob, 'filename')
       formData.append('name', 'Paul');
 
-      // const path = 'http://95.163.230.150:3000'
-      const path = 'https://86a0416fd324.vps.myjino.ru'
+      const path = 'http://95.163.230.150:3000'
+      // const path = 'https://86a0416fd324.vps.myjino.ru'
       // const path = 'http://localhost:3000'
 
       fetch(`${path}/submit`, {
