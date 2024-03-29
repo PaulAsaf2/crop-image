@@ -23,7 +23,12 @@ const upload = multer({ storage: storage });
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'))
+app.use(express.static('public'));
+
+app.get('/', (req, res) => {
+  const { code } = req.query;
+  res.send(req.query);
+})
 
 app.post('/submit', upload.single('image'), async (req, res) => {
   try {

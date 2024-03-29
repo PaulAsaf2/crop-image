@@ -13,12 +13,14 @@ let fileTypes = [
   'image/gif',
   'image/heic',
 ]
+const path = 'https://86a0416fd324.vps.myjino.ru'
+// const path = 'http://195.161.62.139:49226'
+// const path = 'http://localhost:3000'
 let cropImage
-// let tg = window.Telegram.WebApp
-// let queryId = tg.initDataUnsafe?.query_id
+let tg = window.Telegram.WebApp
+let queryId = tg.initDataUnsafe?.query_id
 
-// console.log(queryId);
-// 46.148.228.152:8000
+tg.expand();
 
 function validFileType(file) {
   return fileTypes.includes(file.type)
@@ -66,17 +68,23 @@ selectBtn.addEventListener('click', () => {
       formData.append('image', blob, 'filename')
       formData.append('name', 'Paul');
 
-      const path = 'https://86a0416fd324.vps.myjino.ru'
-      // const path = 'http://195.161.62.139:49226'
-      // const path = 'http://localhost:3000'
-
       fetch(`${path}/submit`, {
         method: 'POST',
         body: formData,
       })
         .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
+        .then(data => {
+          const { message } = data;
+          if (message === 'Upload succeed!') {
+            tg.close();
+          } else {
+            alert('Изображение не загрузилось. Попробуйте снова');
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          alert('Изображение не загрузилось. Попробуйте снова');
+        });
     
     })
     .catch(error => console.log(error))
