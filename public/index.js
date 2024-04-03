@@ -13,12 +13,13 @@ let fileTypes = [
   'image/gif',
   'image/heic',
 ]
-// const path = 'https://86a0416fd324.vps.myjino.ru'
+const path = 'https://86a0416fd324.vps.myjino.ru'
 // const path = 'http://195.161.62.139:49226'
-const path = 'https://127.0.0.1:443'
+// const path = 'https://127.0.0.1:443'
 let cropImage
 let tg = window.Telegram.WebApp
 let queryId = tg.initDataUnsafe?.query_id
+let userId = tg.initDataUnsafe?.user?.id
 
 tg.expand();
 
@@ -76,7 +77,7 @@ selectBtn.addEventListener('click', () => {
         .then(data => {
           const { message } = data;
           if (message === 'Upload succeed!') {
-            tg.close();
+            // tg.close();
             console.log(data);
           } else {
             alert('Изображение не загрузилось. Попробуйте снова');
@@ -87,7 +88,11 @@ selectBtn.addEventListener('click', () => {
           console.log(err)
           alert('Изображение не загрузилось. Попробуйте снова');
         });
-    
+
+        fetch(`https://api.puzzlebot.top/?token=CwzFVdWEkfZfud657lWqyes9zPhgOy1G&method=scenarioRun&user_id=${userId}&scenario_id=82086`)
+          .then(res => res.json())
+          .then(data => console.log(data))
+          .catch(err => console.log(err));
     })
     .catch(error => console.log(error))
 })

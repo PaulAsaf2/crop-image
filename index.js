@@ -9,18 +9,18 @@ const fs = require('fs');
 const path = require('path');
 // -------------------------------------
 const app = express();
-// const PORT = 3000;
-const PORT = 443;
-const options = {
-  key: fs.readFileSync('./127.0.0.1-key.pem'),
-  cert: fs.readFileSync('./127.0.0.1.pem'),
+const PORT = 3000;
+// const PORT = 443;
+// const options = {
+//   key: fs.readFileSync('./127.0.0.1-key.pem'),
+//   cert: fs.readFileSync('./127.0.0.1.pem'),
   // key: fs.readFileSync('./localhost-key.pem'),
   // cert: fs.readFileSync('./localhost.pem'),
-};
+// };
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const dest ='C:\\Users\\pavel\\repositories\\magnetto\\telegram-mini-app\\wallstring\\crop-image\\uploads';
-    // const dest = '/var/www/wallstring/webapp1/uploads';
+    // const dest ='C:\\Users\\pavel\\repositories\\magnetto\\telegram-mini-app\\wallstring\\crop-image\\uploads';
+    const dest = '/var/www/wallstring/webapp1/uploads';
     // const dest = '/root/crop-image/uploads';
     cb(null, dest);
   },
@@ -54,7 +54,11 @@ app.post('/submit', upload.single('image'), (req, res) => {
   }
 })
 // -------------------------------------
-const server = https.createServer(options, app);
-server.listen(PORT, '127.0.0.1', () => {
+// const server = https.createServer(options, app);
+// server.listen(PORT, '127.0.0.1', () => {
+//   console.log(`Server is running on ${PORT}`);
+// })
+
+app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
 })
