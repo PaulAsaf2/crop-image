@@ -9,10 +9,13 @@ const fs = require('fs');
 const path = require('path');
 // -------------------------------------
 const app = express();
-const PORT = 3000;
+// const PORT = 3000;
+const PORT = 443;
 const options = {
-  key: fs.readFileSync('./localhost-key.pem'),
-  cert: fs.readFileSync('./localhost.pem'),
+  key: fs.readFileSync('./127.0.0.1-key.pem'),
+  cert: fs.readFileSync('./127.0.0.1.pem'),
+  // key: fs.readFileSync('./localhost-key.pem'),
+  // cert: fs.readFileSync('./localhost.pem'),
 };
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -38,18 +41,20 @@ app.get('/', (req, res) => {
   res.send(req.query);
 })
 
-app.post('/submit', upload.single('image'), async (req, res) => {
+app.post('/submit', upload.single('image'), (req, res) => {
   try {
     const { filename } = req.file;
     const filepath = path.join(__dirname, `uploads/${filename}`);
-    // const file = await fs.readFile(filepath);
-    res.status(200).send({ message: 'Upload succeed!' })
+    const file = fs.readFile(filepath, (err, data) => {
+      if (err) throw err;
+      res.status(200).send({ message: 'Upload succeed!' })
+    });
   } catch(err) {
     res.status(500).send({ message: 'Oops! Something went wrong!' })
   }
 })
 // -------------------------------------
 const server = https.createServer(options, app);
-server.listen(PORT, () => {
-  console.log(`Server is running on https://localhost:${PORT}`);
+server.listen(PORT, '127.0.0.1', () => {
+  console.log(`Server is running on ${PORT}`);
 })

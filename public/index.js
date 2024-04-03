@@ -15,7 +15,7 @@ let fileTypes = [
 ]
 // const path = 'https://86a0416fd324.vps.myjino.ru'
 // const path = 'http://195.161.62.139:49226'
-const path = 'https://localhost:3000'
+const path = 'https://127.0.0.1:443'
 let cropImage
 let tg = window.Telegram.WebApp
 let queryId = tg.initDataUnsafe?.query_id
@@ -77,8 +77,10 @@ selectBtn.addEventListener('click', () => {
           const { message } = data;
           if (message === 'Upload succeed!') {
             tg.close();
+            console.log(data);
           } else {
             alert('Изображение не загрузилось. Попробуйте снова');
+            console.log(data);
           }
         })
         .catch(err => {
