@@ -13,9 +13,9 @@ let fileTypes = [
   'image/gif',
   'image/heic',
 ]
-const path = 'https://86a0416fd324.vps.myjino.ru'
+// const path = 'https://86a0416fd324.vps.myjino.ru'
 // const path = 'http://195.161.62.139:49226'
-// const path = 'http://localhost:3000'
+const path = 'https://localhost:3000'
 let cropImage
 let tg = window.Telegram.WebApp
 let queryId = tg.initDataUnsafe?.query_id
