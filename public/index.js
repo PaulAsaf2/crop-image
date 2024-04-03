@@ -89,7 +89,9 @@ selectBtn.addEventListener('click', () => {
           alert('Изображение не загрузилось. Попробуйте снова');
         });
 
-        fetch(`https://api.puzzlebot.top/?token=CwzFVdWEkfZfud657lWqyes9zPhgOy1G&method=scenarioRun&user_id=${userId}&scenario_id=82086`)
+        fetch(`https://api.puzzlebot.top/?token=CwzFVdWEkfZfud657lWqyes9zPhgOy1G&method=scenarioRun&user_id=${userId}&scenario_id=82086`, {
+          mode: 'no-cors',
+        })
           .then(res => res.json())
           .then(data => console.log(data))
           .catch(err => console.log(err));
