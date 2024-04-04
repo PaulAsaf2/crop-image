@@ -13,15 +13,20 @@ let fileTypes = [
   'image/gif',
   'image/heic',
 ]
-const path = 'https://86a0416fd324.vps.myjino.ru'
+// const path = 'https://86a0416fd324.vps.myjino.ru'
 // const path = 'http://195.161.62.139:49226'
-// const path = 'https://127.0.0.1:443'
+const path = 'https://127.0.0.1:443'
 let cropImage
 let tg = window.Telegram.WebApp
 let queryId = tg.initDataUnsafe?.query_id
 let userId = tg.initDataUnsafe?.user?.id
 
 tg.expand();
+
+fetch(`${path}/get-code`)
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
 
 function validFileType(file) {
   return fileTypes.includes(file.type)
@@ -56,6 +61,7 @@ backBtn.addEventListener('click', () => {
   selectSection.style.display = 'block'
   cropSection.style.display = 'none'
 })
+
 selectBtn.addEventListener('click', () => {
   cropImage.result({type: 'blob', size: 'viewport'})
     .then((blob) => {
@@ -90,11 +96,22 @@ selectBtn.addEventListener('click', () => {
         });
 
         fetch(`https://api.puzzlebot.top/?token=CwzFVdWEkfZfud657lWqyes9zPhgOy1G&method=scenarioRun&user_id=${userId}&scenario_id=82086`, {
-          mode: 'no-cors',
+          // mode: 'no-cors',
         })
           .then(res => res.json())
           .then(data => console.log(data))
           .catch(err => console.log(err));
+
+        // fetch(`
+        // https://pin.sourctech.ru/telegram/string/variableSet.php
+        // ?img={имя файла который обрезали}
+        // &userId={id пользователя телеграм}
+        // &promocode={промокод из get запроса, который ты сохранил в переменную}`, {
+        //   mode: 'no-cors',
+        // })
+          // .then(res => res.json())
+          // .then(data => console.log(data))
+          // .catch(err => console.log(err));
     })
     .catch(error => console.log(error))
 })
